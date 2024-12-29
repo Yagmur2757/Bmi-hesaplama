@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vücut Kitle İndeksi Hesaplama</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 400px;
+      margin: 50px auto;
+      background: #ffffff;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 10px;
+    }
+    h1 {
+      color: #333;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    button {
+      padding: 10px 20px;
+      background: #007BFF;
+      color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .result {
+      margin-top: 20px;
+      font-size: 18px;
+      font-weight: bold;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Vücut Kitle İndeksi Hesaplama</h1>
+    <form id="bmiForm">
+      <input type="number" id="height" placeholder="Boyunuzu cm cinsinden girin (ör. 170)" required>
+      <input type="number" id="weight" placeholder="Kilonuzu kg cinsinden girin (ör. 70)" required>
+      <button type="button" onclick="calculateBMI()">Hesapla</button>
+    </form>
+    <div class="result" id="bmiResult"></div>
+  </div>
+
+  <script>
+    function calculateBMI() {
+      const height = document.getElementById("height").value / 100; // Boyu metreye çeviriyoruz
+      const weight = document.getElementById("weight").value;
+      const bmi = (weight / (height * height)).toFixed(2);
+
+      let message = `Vücut Kitle İndeksiniz: ${bmi} - `;
+      if (bmi < 18.5) {
+        message += "Zayıf";
+      } else if (bmi >= 18.5 && bmi < 24.9) {
+        message += "Normal";
+      } else if (bmi >= 25 && bmi < 29.9) {
+        message += "Fazla Kilolu";
+      } else {
+        message += "Obez";
+      }
+
+      document.getElementById("bmiResult").textContent = message;
+    }
+  </script>
+</body>
+</html>
